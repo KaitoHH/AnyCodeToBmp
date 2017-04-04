@@ -34,7 +34,7 @@ a file named `hello.cpp.bmp` will create, which looks like
 
 ![helloworld preview](https://github.com/KaitoHH/AnyCodeToBmp/raw/master/hello_prev.png)
 
-![helloworld preview](https://github.com/KaitoHH/AnyCodeToBmp/raw/master/example/hello.cpp.bmp)
+**NOTE** This is *30x* larger version, click [here](https://github.com/KaitoHH/AnyCodeToBmp/raw/master/example/hello.cpp.bmp) to see the real file.
 
 Use any text editor to open this bmp file
 
@@ -42,7 +42,7 @@ Use any text editor to open this bmp file
 vim hello.cpp.bmp
 ```
 
-![helloworld preview](https://github.com/KaitoHH/AnyCodeToBmp/raw/master/hello_vim.png)
+![helloworld vim](https://github.com/KaitoHH/AnyCodeToBmp/raw/master/hello_vim.png)
 
 You will find that the code is almost the same as the original one except the bmp header and some new lines.
 
