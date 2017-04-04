@@ -46,4 +46,6 @@ vim hello.cpp.bmp
 
 You will find that the code is almost the same as the original one except the bmp header and some new lines.
 
+**If you find any code that can generate a good-looking image, please send me your code, and I will post it here for everyone to watch :)**
+
 
