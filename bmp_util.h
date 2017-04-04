@@ -1,23 +1,25 @@
 /**
  * Name: bmp file util
  * Author: KaitoHH
- * Description: This header implements a simple bmp-create function to 
+ * Description: This header implements a simple bmp-create function to
  * construct a simple bmp image by passing a pixel array, where pixel
- * is a char[3] array. 
+ * is a char[3] array.
  * @see #write_to_bmp for more information
  *
  * All Rights Reserved 2017
 **/
- 
+
 #pragma once
 #include <stdio.h>
 
-#define FW_OPEN(fp,name)  fp=fopen(filename, "wb");FILE *__fp=fp
-#define FSW(d) fwrite(d,sizeof(unsigned char),1,__fp)
-#define FDW(d) fwrite(d,sizeof(unsigned char),2,__fp)
-#define FIW(d) fwrite(d,sizeof(unsigned int),1,__fp)
-#define FPW(d) fwrite(d,sizeof(pixel),1,__fp)
-#define FNPW(d,n) fwrite(d,sizeof(pixel),n,__fp)
+#define FW_OPEN(fp, name)                                                      \
+    fp = fopen(filename, "wb");                                                \
+    FILE *__fp = fp
+#define FSW(d) fwrite(d, sizeof(unsigned char), 1, __fp)
+#define FDW(d) fwrite(d, sizeof(unsigned char), 2, __fp)
+#define FIW(d) fwrite(d, sizeof(unsigned int), 1, __fp)
+#define FPW(d) fwrite(d, sizeof(pixel), 1, __fp)
+#define FNPW(d, n) fwrite(d, sizeof(pixel), n, __fp)
 
 typedef unsigned char pixel[3];
 const unsigned char BMP_HEADER_BM[] = {0x42, 0x4d};
@@ -35,12 +37,12 @@ const unsigned char PADDING = 0;
 
 unsigned int raw_bmp_size(unsigned int width, unsigned int height)
 {
-    return width * height * 3			// pixel
-           + height * 2;				// padding
+    return width * height * 3 // pixel
+           + height * 2;      // padding
 }
 
 /**
- * Input: 
+ * Input:
  * width: the width of the image
  * height: the height of the image
  * RGBArray: a one-dimension pixel array that stores color of pixels
@@ -48,10 +50,11 @@ unsigned int raw_bmp_size(unsigned int width, unsigned int height)
  * Output:
  * a file named filename, which is a bmp image file
 **/
-void write_to_bmp(unsigned int width, unsigned int height, pixel *RGBArray, char *filename)
+void write_to_bmp(unsigned int width, unsigned int height, pixel *RGBArray,
+                  char *filename)
 {
     unsigned int raw_size = raw_bmp_size(width, height);
-    unsigned int size = HEADER_SIZE	// bmp header size
+    unsigned int size = HEADER_SIZE // bmp header size
                         + raw_size;
 
     FILE *fp;
@@ -77,13 +80,12 @@ void write_to_bmp(unsigned int width, unsigned int height, pixel *RGBArray, char
     FIW(&NONE_COLOR);
 
     int pad = (4 - width * 3 % 4) % 4;
-    for(unsigned int i = 0; i < height; i++) {
+    for (unsigned int i = 0; i < height; i++) {
         FNPW(RGBArray, width);
-        for(int j = 0; j < pad; j++) {
+        for (int j = 0; j < pad; j++) {
             FSW(&PADDING);
         }
         RGBArray += width;
     }
     fclose(fp);
 }
-
