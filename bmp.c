@@ -43,7 +43,6 @@ int main(int argc, char **argv)
 
     int len = sizeof(argv[1]) + 10;
     char *filename = (char *)malloc(len);
-    printf("%ld\n", sizeof(filename));
     memset(filename, 0, len);
     strcat(filename, argv[1]);
     strcat(filename, ".bmp");
