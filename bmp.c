@@ -3,7 +3,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#define new_pixel() (pixel *) malloc(sizeof(pixel))
+
 typedef unsigned char byte;
 
 int get_file_size(FILE *fp)
@@ -14,7 +14,7 @@ int get_file_size(FILE *fp)
     return sz;
 }
 
-void *left1byte(void *pointer) { return (void *)(((byte *)pointer) + 1); }
+void *r_shift_byte(void *pointer) { return (void *)(((byte *)pointer) + 1); }
 
 int main(int argc, char **argv)
 {
@@ -37,7 +37,7 @@ int main(int argc, char **argv)
     pixel_array = (pixel *)malloc(size * sizeof(pixel));
     memset(pixel_array, '\n', size * sizeof(pixel));
     pixel *head = pixel_array;
-    pixel_array = (pixel *)left1byte(pixel_array);
+    pixel_array = (pixel *)r_shift_byte(pixel_array);
 
     while (fread(pixel_array++, sizeof(byte), 3, fp));
 
